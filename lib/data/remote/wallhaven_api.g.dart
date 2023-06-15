@@ -21,13 +21,14 @@ class _WallhavenApi implements WallhavenApi {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<Wallpaper>>> search() async {
+  Future<HttpResponse<Pagination<Wallpaper>>> search(
+      {required int page}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<HttpResponse<List<Wallpaper>>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<Pagination<Wallpaper>>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -39,9 +40,10 @@ class _WallhavenApi implements WallhavenApi {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => Wallpaper.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = Pagination<Wallpaper>.fromJson(
+      _result.data!,
+      (json) => Wallpaper.fromJson(json as Map<String, dynamic>),
+    );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

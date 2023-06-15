@@ -8,7 +8,6 @@ part 'wallpaper.g.dart';
 
 @freezed
 class Wallpaper with _$Wallpaper {
-  const Wallpaper._();
   const factory Wallpaper({
     required String id,
     required int views,
@@ -26,9 +25,10 @@ class Wallpaper with _$Wallpaper {
     required Thumbs thumbs,
   }) = _Wallpaper;
 
-  @JsonKey(includeFromJson: false, includeToJson: true)
-  String get resolution => '${dimentionX}x$dimentionY';
-
   factory Wallpaper.fromJson(Map<String, Object?> json) =>
       _$WallpaperFromJson(json);
+  const Wallpaper._();
+
+  @JsonKey(includeFromJson: false, includeToJson: true)
+  String get resolution => '${dimentionX}x$dimentionY';
 }
