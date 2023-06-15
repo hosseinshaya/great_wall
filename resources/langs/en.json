@@ -1,0 +1,8 @@
+{
+  "language": "English",
+  "name": "Great Wall",
+  "err": {
+    "tryAgain": "Oops, There is a problem, Please try again",
+    "internet": "Make sure that you are connected"
+  }
+}
