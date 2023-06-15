@@ -13,7 +13,7 @@ part 'wallhaven_api.g.dart';
 abstract class WallhavenApi {
   factory WallhavenApi() => _WallhavenApi(ApiClient().dio);
 
-  @POST('/v1/search')
+  @GET('/v1/search')
   Future<HttpResponse<Pagination<Wallpaper>>> search(
       {@Query('page') required int page});
 }

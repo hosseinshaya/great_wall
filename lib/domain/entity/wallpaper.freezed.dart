@@ -26,10 +26,10 @@ mixin _$Wallpaper {
   String get category =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'dimention_x')
-  int get dimentionX =>
+  int? get dimentionX =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'dimention_y')
-  int get dimentionY => throw _privateConstructorUsedError;
+  int? get dimentionY => throw _privateConstructorUsedError;
   String get ratio =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'file_size')
@@ -54,8 +54,8 @@ abstract class $WallpaperCopyWith<$Res> {
       int views,
       int favorites,
       String category,
-      @JsonKey(name: 'dimention_x') int dimentionX,
-      @JsonKey(name: 'dimention_y') int dimentionY,
+      @JsonKey(name: 'dimention_x') int? dimentionX,
+      @JsonKey(name: 'dimention_y') int? dimentionY,
       String ratio,
       @JsonKey(name: 'file_size') int fileSize,
       List<HexColor> colors,
@@ -82,8 +82,8 @@ class _$WallpaperCopyWithImpl<$Res, $Val extends Wallpaper>
     Object? views = null,
     Object? favorites = null,
     Object? category = null,
-    Object? dimentionX = null,
-    Object? dimentionY = null,
+    Object? dimentionX = freezed,
+    Object? dimentionY = freezed,
     Object? ratio = null,
     Object? fileSize = null,
     Object? colors = null,
@@ -107,14 +107,14 @@ class _$WallpaperCopyWithImpl<$Res, $Val extends Wallpaper>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
-      dimentionX: null == dimentionX
+      dimentionX: freezed == dimentionX
           ? _value.dimentionX
           : dimentionX // ignore: cast_nullable_to_non_nullable
-              as int,
-      dimentionY: null == dimentionY
+              as int?,
+      dimentionY: freezed == dimentionY
           ? _value.dimentionY
           : dimentionY // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       ratio: null == ratio
           ? _value.ratio
           : ratio // ignore: cast_nullable_to_non_nullable
@@ -159,8 +159,8 @@ abstract class _$$_WallpaperCopyWith<$Res> implements $WallpaperCopyWith<$Res> {
       int views,
       int favorites,
       String category,
-      @JsonKey(name: 'dimention_x') int dimentionX,
-      @JsonKey(name: 'dimention_y') int dimentionY,
+      @JsonKey(name: 'dimention_x') int? dimentionX,
+      @JsonKey(name: 'dimention_y') int? dimentionY,
       String ratio,
       @JsonKey(name: 'file_size') int fileSize,
       List<HexColor> colors,
@@ -186,8 +186,8 @@ class __$$_WallpaperCopyWithImpl<$Res>
     Object? views = null,
     Object? favorites = null,
     Object? category = null,
-    Object? dimentionX = null,
-    Object? dimentionY = null,
+    Object? dimentionX = freezed,
+    Object? dimentionY = freezed,
     Object? ratio = null,
     Object? fileSize = null,
     Object? colors = null,
@@ -211,14 +211,14 @@ class __$$_WallpaperCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
-      dimentionX: null == dimentionX
+      dimentionX: freezed == dimentionX
           ? _value.dimentionX
           : dimentionX // ignore: cast_nullable_to_non_nullable
-              as int,
-      dimentionY: null == dimentionY
+              as int?,
+      dimentionY: freezed == dimentionY
           ? _value.dimentionY
           : dimentionY // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       ratio: null == ratio
           ? _value.ratio
           : ratio // ignore: cast_nullable_to_non_nullable
@@ -251,8 +251,8 @@ class _$_Wallpaper extends _Wallpaper {
       required this.views,
       required this.favorites,
       required this.category,
-      @JsonKey(name: 'dimention_x') required this.dimentionX,
-      @JsonKey(name: 'dimention_y') required this.dimentionY,
+      @JsonKey(name: 'dimention_x') this.dimentionX,
+      @JsonKey(name: 'dimention_y') this.dimentionY,
       required this.ratio,
       @JsonKey(name: 'file_size') required this.fileSize,
       required final List<HexColor> colors,
@@ -275,11 +275,11 @@ class _$_Wallpaper extends _Wallpaper {
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'dimention_x')
-  final int dimentionX;
+  final int? dimentionX;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'dimention_y')
-  final int dimentionY;
+  final int? dimentionY;
   @override
   final String ratio;
 // ignore: invalid_annotation_target
@@ -363,8 +363,8 @@ abstract class _Wallpaper extends Wallpaper {
       required final int views,
       required final int favorites,
       required final String category,
-      @JsonKey(name: 'dimention_x') required final int dimentionX,
-      @JsonKey(name: 'dimention_y') required final int dimentionY,
+      @JsonKey(name: 'dimention_x') final int? dimentionX,
+      @JsonKey(name: 'dimention_y') final int? dimentionY,
       required final String ratio,
       @JsonKey(name: 'file_size') required final int fileSize,
       required final List<HexColor> colors,
@@ -385,10 +385,10 @@ abstract class _Wallpaper extends Wallpaper {
   String get category;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'dimention_x')
-  int get dimentionX;
+  int? get dimentionX;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'dimention_y')
-  int get dimentionY;
+  int? get dimentionY;
   @override
   String get ratio;
   @override // ignore: invalid_annotation_target

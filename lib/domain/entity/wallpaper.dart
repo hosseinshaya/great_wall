@@ -14,9 +14,9 @@ class Wallpaper with _$Wallpaper {
     required int favorites,
     required String category,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'dimention_x') required int dimentionX,
+    @JsonKey(name: 'dimention_x') int? dimentionX,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'dimention_y') required int dimentionY,
+    @JsonKey(name: 'dimention_y') int? dimentionY,
     required String ratio,
     // ignore: invalid_annotation_target
     @JsonKey(name: 'file_size') required int fileSize,
@@ -30,5 +30,7 @@ class Wallpaper with _$Wallpaper {
   const Wallpaper._();
 
   @JsonKey(includeFromJson: false, includeToJson: true)
-  String get resolution => '${dimentionX}x$dimentionY';
+  String? get resolution => (dimentionX == null || dimentionY == null)
+      ? null
+      : '${dimentionX}x$dimentionY';
 }

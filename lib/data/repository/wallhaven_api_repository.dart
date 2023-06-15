@@ -8,9 +8,7 @@ import 'package:great_wall/domain/repository/wallhaven_repository.dart';
 import '../../domain/base/base_exception.dart';
 
 class WallhavenApiRepository implements WallhavenRepository {
-  WallhavenApiRepository(this.wallhavenApi);
-
-  final WallhavenApi wallhavenApi;
+  final WallhavenApi wallhavenApi = WallhavenApi();
 
   @override
   Future<Either<Pagination<Wallpaper>, Failure>> search({required int page}) async {

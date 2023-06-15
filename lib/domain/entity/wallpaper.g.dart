@@ -11,8 +11,8 @@ _$_Wallpaper _$$_WallpaperFromJson(Map<String, dynamic> json) => _$_Wallpaper(
       views: json['views'] as int,
       favorites: json['favorites'] as int,
       category: json['category'] as String,
-      dimentionX: json['dimention_x'] as int,
-      dimentionY: json['dimention_y'] as int,
+      dimentionX: json['dimention_x'] as int?,
+      dimentionY: json['dimention_y'] as int?,
       ratio: json['ratio'] as String,
       fileSize: json['file_size'] as int,
       colors: (json['colors'] as List<dynamic>)
