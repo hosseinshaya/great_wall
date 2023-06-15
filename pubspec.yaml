@@ -41,6 +41,8 @@ dependencies:
   cookie_jar: ^4.0.3
   path_provider: ^2.0.15
   logger: ^1.4.0
+  dartz: ^0.10.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
