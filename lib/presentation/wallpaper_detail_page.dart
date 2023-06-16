@@ -91,8 +91,6 @@ class WallpaperDetailPage extends StatelessWidget {
                                                     wallpaperLocation:
                                                         AsyncWallpaper
                                                             .HOME_SCREEN,
-                                                    toastDetails:
-                                                        ToastDetails.success(),
                                                     errorToastDetails:
                                                         ToastDetails.error(),
                                                   ).then((_) => Toast.show(
@@ -118,8 +116,6 @@ class WallpaperDetailPage extends StatelessWidget {
                                                     wallpaperLocation:
                                                         AsyncWallpaper
                                                             .LOCK_SCREEN,
-                                                    toastDetails:
-                                                        ToastDetails.success(),
                                                     errorToastDetails:
                                                         ToastDetails.error(),
                                                   ).then((_) => Toast.show(
@@ -142,8 +138,6 @@ class WallpaperDetailPage extends StatelessWidget {
                                                   await AsyncWallpaper
                                                       .setWallpaperFromFile(
                                                     filePath: bloc.savedPath!,
-                                                    toastDetails:
-                                                        ToastDetails.success(),
                                                     errorToastDetails:
                                                         ToastDetails.error(),
                                                   ).then((_) => Toast.show(
