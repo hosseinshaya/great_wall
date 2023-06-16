@@ -39,7 +39,7 @@ class HomeBloc extends ChangeNotifier {
   Future<Either<Pagination<Wallpaper>, Failure>?> load(
       {bool refresh = false}) async {
     if (!_lock) {
-      if (refresh) {
+      if (refresh && _items.isEmpty) {
         loading = true;
       }
       _lock = true;
@@ -50,19 +50,22 @@ class HomeBloc extends ChangeNotifier {
           if (refresh) {
             loading = false;
           }
+          _lock = false;
+          return response;
+        } else {
+          response.leftMap((left) {
+            _meta = left.meta;
+            if (refresh) {
+              _items = left.items ?? [];
+            } else {
+              _items.addAll(left.items ?? []);
+            }
+          });
+          _loading = false;
+          notifyListeners();
+          _lock = false;
           return response;
         }
-        List<Wallpaper>? items;
-        response.leftMap((left) {
-          _meta = left.meta;
-          items = left.items;
-        });
-        if (refresh) {
-          _items = items ?? [];
-        } else {
-          _items.addAll(items ?? []);
-        }
-        notifyListeners();
       } catch (e, s) {
         e.errLog(e, s);
       }

@@ -58,37 +58,37 @@ class _HomePageState extends State<HomePage> {
                   _refreshController.refreshFailed();
                 }
               },
-              child:
-                  context.select<HomeBloc, bool>((bloc) => bloc.loading)
-                      ? const Padding(
-                          padding: EdgeInsets.all(50),
-                          child: Center(child: LoadingWidget()),
-                        )
-                      : Selector<HomeBloc, List<Wallpaper>>(
-                          selector: (context, bloc) => bloc.items,
-                          builder: (context, items, child) => Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: StaggeredGrid.count(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 24,
-                              crossAxisSpacing: 24,
-                              children: items
-                                  .map(
-                                    (item) => ClipRRect(
-                                        borderRadius: BorderRadius.circular(12),
-                                        child: LayoutBuilder(
-                                            builder: (context, constraints) =>
-                                                AspectRatio(
-                                                  aspectRatio:
-                                                      double.parse(item.ratio),
-                                                  child: ImageComponent(
-                                                      item.thumbs.original),
-                                                ))),
-                                  )
-                                  .toList(),
-                            ),
-                          ),
+              child: Consumer<HomeBloc>(
+                builder: (context, bloc, child) => bloc.loading
+                    ? const Padding(
+                        padding: EdgeInsets.all(50),
+                        child: Center(child: LoadingWidget()),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: StaggeredGrid.count(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 24,
+                          crossAxisSpacing: 24,
+                          children: context
+                              .select<HomeBloc, List<Wallpaper>>(
+                                  (bloc) => bloc.items)
+                              .map(
+                                (item) => ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: LayoutBuilder(
+                                        builder: (context, constraints) =>
+                                            AspectRatio(
+                                              aspectRatio:
+                                                  double.parse(item.ratio),
+                                              child: ImageComponent(
+                                                  item.thumbs.original),
+                                            ))),
+                              )
+                              .toList(),
                         ),
+                      ),
+              ),
             ),
           ));
 }
