@@ -74,16 +74,19 @@ class _HomePageState extends State<HomePage> {
                               .select<HomeBloc, List<Wallpaper>>(
                                   (bloc) => bloc.items)
                               .map(
-                                (item) => ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: LayoutBuilder(
-                                        builder: (context, constraints) =>
-                                            AspectRatio(
-                                              aspectRatio:
-                                                  double.parse(item.ratio),
-                                              child: ImageComponent(
-                                                  item.thumbs.original),
-                                            ))),
+                                (item) => Hero(
+                                  tag: item.id,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: LayoutBuilder(
+                                          builder: (context, constraints) =>
+                                              AspectRatio(
+                                                aspectRatio:
+                                                    double.parse(item.ratio),
+                                                child: ImageComponent(
+                                                    item.thumbs.original),
+                                              ))),
+                                ),
                               )
                               .toList(),
                         ),
