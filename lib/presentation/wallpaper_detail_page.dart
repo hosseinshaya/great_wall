@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:great_wall/common/localization/locale_keys.g.dart';
+import 'package:great_wall/common/styles/appTheme/app_theme_helper.dart';
 import 'package:great_wall/domain/entity/wallpaper.dart';
 import 'package:great_wall/presentation/common/app_button.dart';
 import 'package:great_wall/presentation/logic/wallpaper_detail_bloc.dart';
@@ -83,7 +84,36 @@ class WallpaperDetailPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-                const SizedBox(height: 24),
+                Wrap(
+                  spacing: 40,
+                  runSpacing: 24,
+                  children: [
+                    Text(wallpaper.category.toUpperCase()),
+                    Text(wallpaper.resolution),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.visibility_rounded,
+                          color: context.colorScheme.outline,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(wallpaper.views.toString()),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.favorite_rounded,
+                          color: context.colorScheme.outline,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(wallpaper.favorites.toString()),
+                      ],
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 24),
               ],
             ),

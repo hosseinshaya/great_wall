@@ -17,6 +17,7 @@ class Wallpaper with _$Wallpaper {
     @JsonKey(name: 'dimention_x') int? dimentionX,
     // ignore: invalid_annotation_target
     @JsonKey(name: 'dimention_y') int? dimentionY,
+    required String resolution,
     required String ratio,
     // ignore: invalid_annotation_target
     @JsonKey(name: 'file_size') required int fileSize,
@@ -27,10 +28,4 @@ class Wallpaper with _$Wallpaper {
 
   factory Wallpaper.fromJson(Map<String, Object?> json) =>
       _$WallpaperFromJson(json);
-  const Wallpaper._();
-
-  @JsonKey(includeFromJson: false, includeToJson: true)
-  String? get resolution => (dimentionX == null || dimentionY == null)
-      ? null
-      : '${dimentionX}x$dimentionY';
 }

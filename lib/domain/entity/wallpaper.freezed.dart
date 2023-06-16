@@ -30,6 +30,7 @@ mixin _$Wallpaper {
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'dimention_y')
   int? get dimentionY => throw _privateConstructorUsedError;
+  String get resolution => throw _privateConstructorUsedError;
   String get ratio =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'file_size')
@@ -56,6 +57,7 @@ abstract class $WallpaperCopyWith<$Res> {
       String category,
       @JsonKey(name: 'dimention_x') int? dimentionX,
       @JsonKey(name: 'dimention_y') int? dimentionY,
+      String resolution,
       String ratio,
       @JsonKey(name: 'file_size') int fileSize,
       List<HexColor> colors,
@@ -84,6 +86,7 @@ class _$WallpaperCopyWithImpl<$Res, $Val extends Wallpaper>
     Object? category = null,
     Object? dimentionX = freezed,
     Object? dimentionY = freezed,
+    Object? resolution = null,
     Object? ratio = null,
     Object? fileSize = null,
     Object? colors = null,
@@ -115,6 +118,10 @@ class _$WallpaperCopyWithImpl<$Res, $Val extends Wallpaper>
           ? _value.dimentionY
           : dimentionY // ignore: cast_nullable_to_non_nullable
               as int?,
+      resolution: null == resolution
+          ? _value.resolution
+          : resolution // ignore: cast_nullable_to_non_nullable
+              as String,
       ratio: null == ratio
           ? _value.ratio
           : ratio // ignore: cast_nullable_to_non_nullable
@@ -161,6 +168,7 @@ abstract class _$$_WallpaperCopyWith<$Res> implements $WallpaperCopyWith<$Res> {
       String category,
       @JsonKey(name: 'dimention_x') int? dimentionX,
       @JsonKey(name: 'dimention_y') int? dimentionY,
+      String resolution,
       String ratio,
       @JsonKey(name: 'file_size') int fileSize,
       List<HexColor> colors,
@@ -188,6 +196,7 @@ class __$$_WallpaperCopyWithImpl<$Res>
     Object? category = null,
     Object? dimentionX = freezed,
     Object? dimentionY = freezed,
+    Object? resolution = null,
     Object? ratio = null,
     Object? fileSize = null,
     Object? colors = null,
@@ -219,6 +228,10 @@ class __$$_WallpaperCopyWithImpl<$Res>
           ? _value.dimentionY
           : dimentionY // ignore: cast_nullable_to_non_nullable
               as int?,
+      resolution: null == resolution
+          ? _value.resolution
+          : resolution // ignore: cast_nullable_to_non_nullable
+              as String,
       ratio: null == ratio
           ? _value.ratio
           : ratio // ignore: cast_nullable_to_non_nullable
@@ -245,7 +258,7 @@ class __$$_WallpaperCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Wallpaper extends _Wallpaper {
+class _$_Wallpaper implements _Wallpaper {
   const _$_Wallpaper(
       {required this.id,
       required this.views,
@@ -253,13 +266,13 @@ class _$_Wallpaper extends _Wallpaper {
       required this.category,
       @JsonKey(name: 'dimention_x') this.dimentionX,
       @JsonKey(name: 'dimention_y') this.dimentionY,
+      required this.resolution,
       required this.ratio,
       @JsonKey(name: 'file_size') required this.fileSize,
       required final List<HexColor> colors,
       required this.path,
       required this.thumbs})
-      : _colors = colors,
-        super._();
+      : _colors = colors;
 
   factory _$_Wallpaper.fromJson(Map<String, dynamic> json) =>
       _$$_WallpaperFromJson(json);
@@ -281,6 +294,8 @@ class _$_Wallpaper extends _Wallpaper {
   @JsonKey(name: 'dimention_y')
   final int? dimentionY;
   @override
+  final String resolution;
+  @override
   final String ratio;
 // ignore: invalid_annotation_target
   @override
@@ -301,7 +316,7 @@ class _$_Wallpaper extends _Wallpaper {
 
   @override
   String toString() {
-    return 'Wallpaper(id: $id, views: $views, favorites: $favorites, category: $category, dimentionX: $dimentionX, dimentionY: $dimentionY, ratio: $ratio, fileSize: $fileSize, colors: $colors, path: $path, thumbs: $thumbs)';
+    return 'Wallpaper(id: $id, views: $views, favorites: $favorites, category: $category, dimentionX: $dimentionX, dimentionY: $dimentionY, resolution: $resolution, ratio: $ratio, fileSize: $fileSize, colors: $colors, path: $path, thumbs: $thumbs)';
   }
 
   @override
@@ -319,6 +334,8 @@ class _$_Wallpaper extends _Wallpaper {
                 other.dimentionX == dimentionX) &&
             (identical(other.dimentionY, dimentionY) ||
                 other.dimentionY == dimentionY) &&
+            (identical(other.resolution, resolution) ||
+                other.resolution == resolution) &&
             (identical(other.ratio, ratio) || other.ratio == ratio) &&
             (identical(other.fileSize, fileSize) ||
                 other.fileSize == fileSize) &&
@@ -337,6 +354,7 @@ class _$_Wallpaper extends _Wallpaper {
       category,
       dimentionX,
       dimentionY,
+      resolution,
       ratio,
       fileSize,
       const DeepCollectionEquality().hash(_colors),
@@ -357,7 +375,7 @@ class _$_Wallpaper extends _Wallpaper {
   }
 }
 
-abstract class _Wallpaper extends Wallpaper {
+abstract class _Wallpaper implements Wallpaper {
   const factory _Wallpaper(
       {required final String id,
       required final int views,
@@ -365,12 +383,12 @@ abstract class _Wallpaper extends Wallpaper {
       required final String category,
       @JsonKey(name: 'dimention_x') final int? dimentionX,
       @JsonKey(name: 'dimention_y') final int? dimentionY,
+      required final String resolution,
       required final String ratio,
       @JsonKey(name: 'file_size') required final int fileSize,
       required final List<HexColor> colors,
       required final String path,
       required final Thumbs thumbs}) = _$_Wallpaper;
-  const _Wallpaper._() : super._();
 
   factory _Wallpaper.fromJson(Map<String, dynamic> json) =
       _$_Wallpaper.fromJson;
@@ -389,6 +407,8 @@ abstract class _Wallpaper extends Wallpaper {
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'dimention_y')
   int? get dimentionY;
+  @override
+  String get resolution;
   @override
   String get ratio;
   @override // ignore: invalid_annotation_target
