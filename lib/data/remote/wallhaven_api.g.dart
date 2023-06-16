@@ -21,10 +21,15 @@ class _WallhavenApi implements WallhavenApi {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<Pagination<Wallpaper>>> search(
-      {required int page}) async {
+  Future<HttpResponse<Pagination<Wallpaper>>> search({
+    required int page,
+    String sorting = 'random',
+  }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'sorting': sorting,
+    };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(

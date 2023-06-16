@@ -15,5 +15,6 @@ abstract class WallhavenApi {
 
   @GET('/v1/search')
   Future<HttpResponse<Pagination<Wallpaper>>> search(
-      {@Query('page') required int page});
+      {@Query('page') required int page,
+      @Query('sorting') String sorting = 'random'});
 }
