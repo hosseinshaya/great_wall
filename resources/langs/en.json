@@ -11,5 +11,10 @@
   "err": {
     "tryAgain": "Oops, There is a problem, Please try again",
     "internet": "Make sure that you are connected"
+  },
+  "wallpaperDetail": {
+    "permissionError": "Oops, I don't have storage permission to download photo",
+    "downloadedSuccessfully": "Image downloaded and saved to gallery successfully",
+    "saved": "Saved"
   }
 }

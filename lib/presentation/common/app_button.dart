@@ -131,7 +131,7 @@ class AppButtonState extends State<AppButton> {
                               color: foregroundColor, size: widget.height / 3))
                       : (widget.child ??
                           Center(
-                            key: Key('normal${widget.text}'),
+                            key: const Key('normal'),
                             child: Wrap(
                               crossAxisAlignment: WrapCrossAlignment.center,
                               spacing: 8,

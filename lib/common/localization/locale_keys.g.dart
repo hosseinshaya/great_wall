@@ -11,5 +11,9 @@ abstract class  LocaleKeys {
   static const err_tryAgain = 'err.tryAgain';
   static const err_internet = 'err.internet';
   static const err = 'err';
+  static const wallpaperDetail_permissionError = 'wallpaperDetail.permissionError';
+  static const wallpaperDetail_downloadedSuccessfully = 'wallpaperDetail.downloadedSuccessfully';
+  static const wallpaperDetail_saved = 'wallpaperDetail.saved';
+  static const wallpaperDetail = 'wallpaperDetail';
 
 }
