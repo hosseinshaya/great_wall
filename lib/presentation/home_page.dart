@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:great_wall/common/localization/locale_keys.g.dart';
-import 'package:great_wall/data/repository/wallhaven_api_repository.dart';
-import 'package:great_wall/domain/usecase/wallhaven_usecase.dart';
+import 'package:great_wall/data/repository/wallhaven_repository_impl.dart';
 import 'package:great_wall/presentation/common/image_component.dart';
 import 'package:great_wall/presentation/common/loading_widget.dart';
 import 'package:great_wall/presentation/common/push_down_clickable.dart';
@@ -28,9 +27,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
       create: (context) => HomeBloc(
-            wallhavenUsecase: WallhavenUsecase(
-              wallhavenRepository: WallhavenApiRepository(),
-            ),
+            wallhavenRepository: WallhavenRepositoryImpl(),
           )..load(refresh: true),
       builder: (context, child) => Consumer<HomeBloc>(
           builder: (context, bloc, chils) => Scaffold(

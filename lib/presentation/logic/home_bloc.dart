@@ -4,13 +4,13 @@ import 'package:great_wall/domain/base/base_failture.dart';
 import 'package:great_wall/domain/base/pagination.dart';
 import 'package:great_wall/domain/base/pagination_meta.dart';
 import 'package:great_wall/domain/entity/wallpaper.dart';
-import 'package:great_wall/domain/usecase/wallhaven_usecase.dart';
+import 'package:great_wall/domain/repository/wallhaven_repository.dart';
 import 'package:great_wall/utils/log/log_helper.dart';
 
 class HomeBloc extends ChangeNotifier {
-  HomeBloc({required this.wallhavenUsecase});
+  HomeBloc({required this.wallhavenRepository});
 
-  final WallhavenUsecase wallhavenUsecase;
+  final WallhavenRepository wallhavenRepository;
 
   PaginationMeta? _meta;
 
@@ -44,7 +44,7 @@ class HomeBloc extends ChangeNotifier {
       }
       _lock = true;
       try {
-        final response = await wallhavenUsecase.search(
+        final response = await wallhavenRepository.search(
             page: refresh ? 1 : ((_meta?.currentPage ?? 0) + 1));
         if (response.isRight()) {
           if (refresh) {
