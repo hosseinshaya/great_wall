@@ -40,7 +40,7 @@ class WallpaperDetailBloc extends ChangeNotifier {
     try {
       downloading = true;
       var tempPath = await getTemporaryDirectory();
-      String savePath = '${tempPath.path}${wallpaper.id}.jpeg';
+      String savePath = '${tempPath.path}/${wallpaper.id}.jpeg';
       await ApiClient().dio.download(
         wallpaper.path,
         savePath,

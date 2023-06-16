@@ -14,7 +14,7 @@ class ApiClient {
   factory ApiClient() => _instance;
 
   ApiClient._init() {
-    _dio = Dio(
+    dio = Dio(
       BaseOptions(
         baseUrl: AppConfig.baseUrl,
         contentType: 'application/json; charset=utf-8',
@@ -27,7 +27,7 @@ class ApiClient {
           onResponse: onResponse,
         ),
       );
-    appDirectory().then((Directory dir) => _dio.interceptors.add(
+    appDirectory().then((Directory dir) => dio.interceptors.add(
           CookieManager(
             PersistCookieJar(
               storage: FileStorage(
@@ -38,10 +38,8 @@ class ApiClient {
         ));
   }
 
-  late final Dio _dio;
+  late final Dio dio;
   Future<void>? isWorking;
-
-  Dio get dio => _dio;
 
   static final ApiClient _instance = ApiClient._init();
 

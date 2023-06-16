@@ -73,6 +73,7 @@ dev_dependencies:
   json_serializable: ^6.7.0
   retrofit_generator: ^7.0.1
   easy_localization_generator: ^0.3.1
+  http_mock_adapter: ^0.4.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
