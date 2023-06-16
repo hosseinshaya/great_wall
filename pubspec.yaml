@@ -54,7 +54,7 @@ dependencies:
   shimmer: ^3.0.0
   external_path: ^1.0.3
   permission_handler: ^10.3.0
-  wallpaper_manager_flutter: ^0.0.2
+  async_wallpaper: ^2.0.3
 
 dependency_overrides:
   intl: ^0.18.1

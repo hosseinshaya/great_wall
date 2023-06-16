@@ -19,6 +19,7 @@
     "setAs": "Set As",
     "homeScreen": "Home Screen",
     "lockScreen": "Lock Screen",
-    "both": "Both"
+    "both": "Both",
+    "wallpaperChanged": "Wallpaper changes successfully"
   }
 }

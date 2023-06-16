@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:great_wall/common/localization/locale_keys.g.dart';
@@ -9,7 +10,6 @@ import 'package:great_wall/presentation/common/app_button.dart';
 import 'package:great_wall/presentation/logic/wallpaper_detail_bloc.dart';
 import 'package:great_wall/utils/toast.dart';
 import 'package:provider/provider.dart';
-import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
 
 import 'common/image_component.dart';
 
@@ -85,11 +85,22 @@ class WallpaperDetailPage extends StatelessWidget {
                                                     .wallpaperDetail_homeScreen
                                                     .tr(),
                                                 onPressed: () async {
-                                                  WallpaperManagerFlutter()
-                                                      .setwallpaperfromFile(
-                                                          File(bloc.savedPath!),
-                                                          WallpaperManagerFlutter
-                                                              .HOME_SCREEN);
+                                                  await AsyncWallpaper
+                                                      .setWallpaperFromFile(
+                                                    filePath: bloc.savedPath!,
+                                                    wallpaperLocation:
+                                                        AsyncWallpaper
+                                                            .HOME_SCREEN,
+                                                    toastDetails:
+                                                        ToastDetails.success(),
+                                                    errorToastDetails:
+                                                        ToastDetails.error(),
+                                                  ).then((_) => Toast.show(
+                                                      context,
+                                                      LocaleKeys
+                                                          .wallpaperDetail_wallpaperChanged
+                                                          .tr(),
+                                                      type: ToastType.success));
                                                 },
                                               ),
                                             ),
@@ -101,11 +112,22 @@ class WallpaperDetailPage extends StatelessWidget {
                                                     .wallpaperDetail_lockScreen
                                                     .tr(),
                                                 onPressed: () async {
-                                                  WallpaperManagerFlutter()
-                                                      .setwallpaperfromFile(
-                                                          File(bloc.savedPath!),
-                                                          WallpaperManagerFlutter
-                                                              .LOCK_SCREEN);
+                                                  await AsyncWallpaper
+                                                      .setWallpaperFromFile(
+                                                    filePath: bloc.savedPath!,
+                                                    wallpaperLocation:
+                                                        AsyncWallpaper
+                                                            .LOCK_SCREEN,
+                                                    toastDetails:
+                                                        ToastDetails.success(),
+                                                    errorToastDetails:
+                                                        ToastDetails.error(),
+                                                  ).then((_) => Toast.show(
+                                                      context,
+                                                      LocaleKeys
+                                                          .wallpaperDetail_wallpaperChanged
+                                                          .tr(),
+                                                      type: ToastType.success));
                                                 },
                                               ),
                                             ),
@@ -117,11 +139,19 @@ class WallpaperDetailPage extends StatelessWidget {
                                                     .wallpaperDetail_both
                                                     .tr(),
                                                 onPressed: () async {
-                                                  WallpaperManagerFlutter()
-                                                      .setwallpaperfromFile(
-                                                          File(bloc.savedPath!),
-                                                          WallpaperManagerFlutter
-                                                              .BOTH_SCREENS);
+                                                  await AsyncWallpaper
+                                                      .setWallpaperFromFile(
+                                                    filePath: bloc.savedPath!,
+                                                    toastDetails:
+                                                        ToastDetails.success(),
+                                                    errorToastDetails:
+                                                        ToastDetails.error(),
+                                                  ).then((_) => Toast.show(
+                                                      context,
+                                                      LocaleKeys
+                                                          .wallpaperDetail_wallpaperChanged
+                                                          .tr(),
+                                                      type: ToastType.success));
                                                 },
                                               ),
                                             ),

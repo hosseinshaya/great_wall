@@ -18,6 +18,7 @@ abstract class  LocaleKeys {
   static const wallpaperDetail_homeScreen = 'wallpaperDetail.homeScreen';
   static const wallpaperDetail_lockScreen = 'wallpaperDetail.lockScreen';
   static const wallpaperDetail_both = 'wallpaperDetail.both';
+  static const wallpaperDetail_wallpaperChanged = 'wallpaperDetail.wallpaperChanged';
   static const wallpaperDetail = 'wallpaperDetail';
 
 }
