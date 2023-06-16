@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:great_wall/common/localization/locale_keys.g.dart';
 import 'package:great_wall/data/repository/wallhaven_api_repository.dart';
-import 'package:great_wall/domain/entity/wallpaper.dart';
 import 'package:great_wall/domain/usecase/wallhaven_usecase.dart';
 import 'package:great_wall/presentation/common/image_component.dart';
 import 'package:great_wall/presentation/common/loading_widget.dart';
@@ -70,9 +69,7 @@ class _HomePageState extends State<HomePage> {
                           crossAxisCount: 2,
                           mainAxisSpacing: 24,
                           crossAxisSpacing: 24,
-                          children: context
-                              .select<HomeBloc, List<Wallpaper>>(
-                                  (bloc) => bloc.items)
+                          children: bloc.items
                               .map(
                                 (item) => Hero(
                                   tag: item.id,
