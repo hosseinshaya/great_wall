@@ -1,15 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:great_wall/common/localization/locale_keys.g.dart';
 import 'package:great_wall/data/repository/wallhaven_api_repository.dart';
 import 'package:great_wall/domain/usecase/wallhaven_usecase.dart';
 import 'package:great_wall/presentation/common/image_component.dart';
 import 'package:great_wall/presentation/common/loading_widget.dart';
+import 'package:great_wall/presentation/common/push_down_clickable.dart';
 import 'package:great_wall/presentation/logic/home_bloc.dart';
 import 'package:great_wall/utils/log/log_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import '../common/router/app_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -72,18 +76,25 @@ class _HomePageState extends State<HomePage> {
                           mainAxisSpacing: 24,
                           crossAxisSpacing: 24,
                           itemCount: bloc.items.length,
-                          itemBuilder: (context, index) => Hero(
-                            tag: bloc.items[index].id,
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: LayoutBuilder(
-                                    builder: (context, constraints) =>
-                                        AspectRatio(
-                                          aspectRatio: double.parse(
-                                              bloc.items[index].ratio),
-                                          child: ImageComponent(bloc
-                                              .items[index].thumbs.original),
-                                        ))),
+                          itemBuilder: (context, index) => PushDownClickable(
+                            onTap: () {
+                              context.push(
+                                  R.wallpaperDetail(id: bloc.items[index].id),
+                                  extra: bloc.items[index]);
+                            },
+                            child: Hero(
+                              tag: bloc.items[index].id,
+                              child: LayoutBuilder(
+                                  builder: (context, constraints) => ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                          constraints.maxWidth / 8),
+                                      child: AspectRatio(
+                                        aspectRatio: double.parse(
+                                            bloc.items[index].ratio),
+                                        child: ImageComponent(
+                                            bloc.items[index].thumbs.original),
+                                      ))),
+                            ),
                           ),
                         ),
                       ),
