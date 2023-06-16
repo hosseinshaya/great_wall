@@ -28,67 +28,64 @@ class _HomePageState extends State<HomePage> {
               wallhavenRepository: WallhavenApiRepository(),
             ),
           )..load(refresh: true),
-      builder: (context, child) => Scaffold(
-            appBar: AppBar(
-              title: Text(LocaleKeys.name.tr()),
-            ),
-            body: SmartRefresher(
-              controller: _refreshController,
-              enablePullUp:
-                  context.select<HomeBloc, bool>((bloc) => bloc.canLoadMore()),
-              onLoading: () async {
-                try {
-                  final response = await context.read<HomeBloc>().load();
-                  response?.fold((l) => _refreshController.loadComplete(),
-                      (r) => _refreshController.loadFailed());
-                } catch (e) {
-                  e.errLog();
-                  _refreshController.loadFailed();
-                }
-              },
-              onRefresh: () async {
-                try {
-                  final response =
-                      await context.read<HomeBloc>().load(refresh: true);
-                  response?.fold((l) => _refreshController.refreshCompleted(),
-                      (r) => _refreshController.refreshFailed());
-                } catch (e) {
-                  e.errLog();
-                  _refreshController.refreshFailed();
-                }
-              },
-              child: Consumer<HomeBloc>(
-                builder: (context, bloc, child) => bloc.loading
-                    ? const Padding(
-                        padding: EdgeInsets.all(50),
-                        child: Center(child: LoadingWidget()),
+      builder: (context, child) => Consumer<HomeBloc>(
+          builder: (context, bloc, chils) => Scaffold(
+                appBar: AppBar(
+                  title: Text(LocaleKeys.name.tr()),
+                ),
+                body: bloc.loading
+                    ? const Center(
+                        child: LoadingWidget(),
                       )
-                    : Padding(
-                        padding: const EdgeInsets.all(24),
-                        child: StaggeredGrid.count(
+                    : SmartRefresher(
+                        controller: _refreshController,
+                        enablePullUp: context.select<HomeBloc, bool>(
+                            (bloc) => bloc.canLoadMore()),
+                        onLoading: () async {
+                          try {
+                            final response =
+                                await context.read<HomeBloc>().load();
+                            response?.fold(
+                                (l) => _refreshController.loadComplete(),
+                                (r) => _refreshController.loadFailed());
+                          } catch (e) {
+                            e.errLog();
+                            _refreshController.loadFailed();
+                          }
+                        },
+                        onRefresh: () async {
+                          try {
+                            final response = await context
+                                .read<HomeBloc>()
+                                .load(refresh: true);
+                            response?.fold(
+                                (l) => _refreshController.refreshCompleted(),
+                                (r) => _refreshController.refreshFailed());
+                          } catch (e) {
+                            e.errLog();
+                            _refreshController.refreshFailed();
+                          }
+                        },
+                        child: MasonryGridView.count(
+                          padding: const EdgeInsets.all(24),
                           crossAxisCount: 2,
                           mainAxisSpacing: 24,
                           crossAxisSpacing: 24,
-                          children: bloc.items
-                              .map(
-                                (item) => Hero(
-                                  tag: item.id,
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: LayoutBuilder(
-                                          builder: (context, constraints) =>
-                                              AspectRatio(
-                                                aspectRatio:
-                                                    double.parse(item.ratio),
-                                                child: ImageComponent(
-                                                    item.thumbs.original),
-                                              ))),
-                                ),
-                              )
-                              .toList(),
+                          itemCount: bloc.items.length,
+                          itemBuilder: (context, index) => Hero(
+                            tag: bloc.items[index].id,
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: LayoutBuilder(
+                                    builder: (context, constraints) =>
+                                        AspectRatio(
+                                          aspectRatio: double.parse(
+                                              bloc.items[index].ratio),
+                                          child: ImageComponent(bloc
+                                              .items[index].thumbs.original),
+                                        ))),
+                          ),
                         ),
                       ),
-              ),
-            ),
-          ));
+              )));
 }
