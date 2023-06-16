@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:great_wall/common/localization/locale_keys.g.dart';
@@ -6,8 +8,8 @@ import 'package:great_wall/domain/entity/wallpaper.dart';
 import 'package:great_wall/presentation/common/app_button.dart';
 import 'package:great_wall/presentation/logic/wallpaper_detail_bloc.dart';
 import 'package:great_wall/utils/toast.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
 
 import 'common/image_component.dart';
 
@@ -49,26 +51,86 @@ class WallpaperDetailPage extends StatelessWidget {
                                   ? '${bloc.downloadPercent}%'
                                   : LocaleKeys.common_button_download.tr(),
                           onPressed: () async {
-                            if (await Permission.storage.request().isGranted) {
-                              bloc.download().then((_) {
-                                Toast.show(
-                                    context,
-                                    LocaleKeys
-                                        .wallpaperDetail_downloadedSuccessfully
-                                        .tr(),
-                                    type: ToastType.success);
-                              });
-                            } else {
-                              // ignore: use_build_context_synchronously
+                            bloc.download().then((_) {
                               Toast.show(
                                   context,
-                                  LocaleKeys.wallpaperDetail_permissionError
+                                  LocaleKeys
+                                      .wallpaperDetail_downloadedSuccessfully
                                       .tr(),
-                                  type: ToastType.warning);
-                            }
+                                  type: ToastType.success);
+                            });
                           },
                         )),
                 const SizedBox(height: 24),
+                if (Platform.isAndroid)
+                  Consumer<WallpaperDetailBloc>(
+                      builder: (context, bloc, child) => AnimatedSize(
+                            duration: const Duration(milliseconds: 250),
+                            alignment: Alignment.topCenter,
+                            child: bloc.savedPath == null
+                                ? const SizedBox.shrink()
+                                : Padding(
+                                    padding: const EdgeInsets.only(bottom: 24),
+                                    child: Column(
+                                      children: [
+                                        Text(LocaleKeys.wallpaperDetail_setAs
+                                            .tr()),
+                                        const SizedBox(height: 12),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: AppButton(
+                                                type: ButtonType.secondary,
+                                                text: LocaleKeys
+                                                    .wallpaperDetail_homeScreen
+                                                    .tr(),
+                                                onPressed: () async {
+                                                  WallpaperManagerFlutter()
+                                                      .setwallpaperfromFile(
+                                                          File(bloc.savedPath!),
+                                                          WallpaperManagerFlutter
+                                                              .HOME_SCREEN);
+                                                },
+                                              ),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            Expanded(
+                                              child: AppButton(
+                                                type: ButtonType.secondary,
+                                                text: LocaleKeys
+                                                    .wallpaperDetail_lockScreen
+                                                    .tr(),
+                                                onPressed: () async {
+                                                  WallpaperManagerFlutter()
+                                                      .setwallpaperfromFile(
+                                                          File(bloc.savedPath!),
+                                                          WallpaperManagerFlutter
+                                                              .LOCK_SCREEN);
+                                                },
+                                              ),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            Expanded(
+                                              child: AppButton(
+                                                type: ButtonType.tertiary,
+                                                text: LocaleKeys
+                                                    .wallpaperDetail_both
+                                                    .tr(),
+                                                onPressed: () async {
+                                                  WallpaperManagerFlutter()
+                                                      .setwallpaperfromFile(
+                                                          File(bloc.savedPath!),
+                                                          WallpaperManagerFlutter
+                                                              .BOTH_SCREENS);
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                          )),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: SizedBox(

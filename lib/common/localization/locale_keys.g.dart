@@ -14,6 +14,10 @@ abstract class  LocaleKeys {
   static const wallpaperDetail_permissionError = 'wallpaperDetail.permissionError';
   static const wallpaperDetail_downloadedSuccessfully = 'wallpaperDetail.downloadedSuccessfully';
   static const wallpaperDetail_saved = 'wallpaperDetail.saved';
+  static const wallpaperDetail_setAs = 'wallpaperDetail.setAs';
+  static const wallpaperDetail_homeScreen = 'wallpaperDetail.homeScreen';
+  static const wallpaperDetail_lockScreen = 'wallpaperDetail.lockScreen';
+  static const wallpaperDetail_both = 'wallpaperDetail.both';
   static const wallpaperDetail = 'wallpaperDetail';
 
 }

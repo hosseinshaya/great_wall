@@ -14,7 +14,11 @@
   },
   "wallpaperDetail": {
     "permissionError": "Oops, I don't have storage permission to download photo",
-    "downloadedSuccessfully": "Image downloaded and saved to gallery successfully",
-    "saved": "Saved"
+    "downloadedSuccessfully": "Image downloaded successfully",
+    "saved": "Saved",
+    "setAs": "Set As",
+    "homeScreen": "Home Screen",
+    "lockScreen": "Lock Screen",
+    "both": "Both"
   }
 }

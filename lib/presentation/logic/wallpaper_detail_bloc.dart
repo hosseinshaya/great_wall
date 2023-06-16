@@ -4,8 +4,6 @@ import 'package:great_wall/domain/entity/wallpaper.dart';
 import 'package:great_wall/utils/log/log_helper.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../../utils/image_gallery_saver.dart';
-
 class WallpaperDetailBloc extends ChangeNotifier {
   WallpaperDetailBloc(this.wallpaper);
 
@@ -29,11 +27,20 @@ class WallpaperDetailBloc extends ChangeNotifier {
     notifyListeners();
   }
 
+  String? _savedPath;
+
+  String? get savedPath => _savedPath;
+
+  set savedPath(String? value) {
+    _savedPath = value;
+    notifyListeners();
+  }
+
   Future<void> download() async {
     try {
       downloading = true;
       var tempPath = await getTemporaryDirectory();
-      String savePath = '${tempPath.path}${wallpaper.id}.jpeg'..wtfLog();
+      String savePath = '${tempPath.path}${wallpaper.id}.jpeg';
       await ApiClient().dio.download(
         wallpaper.path,
         savePath,
@@ -41,7 +48,7 @@ class WallpaperDetailBloc extends ChangeNotifier {
           downloadPercent = (count / total * 100).toInt();
         },
       );
-      await ImageGallerySaver.saveFile(savePath);
+      savedPath = savePath;
     } catch (e) {
       e.errLog();
     }
