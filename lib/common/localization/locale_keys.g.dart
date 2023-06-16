@@ -5,6 +5,7 @@ abstract class  LocaleKeys {
   static const name = 'name';
   static const common_button_cancel = 'common.button.cancel';
   static const common_button_submit = 'common.button.submit';
+  static const common_button_download = 'common.button.download';
   static const common_button = 'common.button';
   static const common = 'common';
   static const err_tryAgain = 'err.tryAgain';

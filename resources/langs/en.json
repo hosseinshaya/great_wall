@@ -4,7 +4,8 @@
   "common": {
     "button": {
       "cancel": "Cancel",
-      "submit": "Submit"
+      "submit": "Submit",
+      "download": "Download"
     }
   },
   "err": {
