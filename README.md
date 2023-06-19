@@ -1,16 +1,9 @@
-# great_wall
+# Great Wall 🌄
 
-A new Flutter project.
+Just choose a wallpaper...
+<br/>
+Great Wall is a [Wallhaven](https://wallhave.cc) open source Flutter client that is a simple and useful application to choose and set a great wallpaper and set it like a piece of cake.
+<br/>
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Download app
+The lastest android version is available on [releases page](https://github.com/hosseinshaya/great_wall/releases), You can easily download and install it.
